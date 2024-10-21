@@ -16,7 +16,7 @@ import slide5 from '../../../assets/img/home/slide5.jpg';
 const Category = () => {
     
     return (
-        <div className='my-4'>
+        <div className='my-4 '>
             <Swiper
         slidesPerView="4"
        
@@ -24,6 +24,10 @@ const Category = () => {
           clickable: true,
         }}
         breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
             640: {
               slidesPerView: 1,
               spaceBetween: 10,
