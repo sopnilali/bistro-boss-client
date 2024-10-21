@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainLayout from './Layout/MainLayout'
 import Home from './pages/Home/Home/Home'
 import Routes from './routes/Routes'
+import { HelmetProvider } from 'react-helmet-async'
 
 
 // const router = createBrowserRouter([
@@ -22,6 +23,9 @@ import Routes from './routes/Routes'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={Routes}/>
+    <HelmetProvider>
+      <RouterProvider router={Routes} />
+    </HelmetProvider>
+
   </StrictMode>,
 )
