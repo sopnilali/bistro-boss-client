@@ -3,9 +3,9 @@ import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 
-const googleProvider = new GoogleAuthProvider();
-
 export const AuthContext = createContext(null)
+
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
 

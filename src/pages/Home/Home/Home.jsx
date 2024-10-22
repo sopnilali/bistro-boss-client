@@ -9,7 +9,6 @@ import NumberTitle from "../../../shared/NumberTitle/NumberTitle";
 import CheefReco from "../CheefReco/CheefReco";
 import Featured from "../Featured/Featured";
 import Testimonials from "../Testimonials/Testimonials";
-import { Helmet } from "react-helmet-async";
 
 const Home = () => {
 
@@ -18,10 +17,6 @@ const Home = () => {
 
     return (
 <>
-        <Helmet>
-            <title>Home | Bistro Boss</title>
-            <meta name="description" content="bistro boss resturant" />
-        </Helmet>
         <div className="container mx-auto">
             <Banner/>
             <SectionTitle subtitle={'From 11:00am to 10:00pm'} Title={'order online'}/>

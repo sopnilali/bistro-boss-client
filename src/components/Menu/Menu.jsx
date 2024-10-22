@@ -2,7 +2,7 @@ import Cover from '../../shared/Cover/Cover';
 import bgMenu from '../../assets/img/menu/banner3.jpg'
 import SectionTitle from '../../shared/SectionTitle/SectionTitle';
 
-import { Helmet } from 'react-helmet-async';
+
 import useMenu from '../../hooks/useMenu';
 import MenuCategory from '../../pages/Menu/MenuCategory/MenuCategory';
 
@@ -28,9 +28,6 @@ const Menu = () => {
 
     return (
         <>
-        <Helmet>
-            <title>Our Menu | Bistro Boss</title>
-        </Helmet>
         <div className='container mx-auto'>
             <Cover img={bgMenu} title={'OUR MENU'} description={'Would you like to try a dish?'} />
             <div className='mt-10'>

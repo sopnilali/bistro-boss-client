@@ -19,21 +19,21 @@ const Login = () => {
         e.target.reset();
     }
 
-    const handlecaptcha = (e)=> {
-        let user_captcha_value = e.target.value
-        if(validateCaptcha(user_captcha_value)){
-            setDisabled(false)
-        }
-        else{
-            setDisabled(true)
-        }
-    }
+    // const handlecaptcha = (e)=> {
+    //     let user_captcha_value = e.target.value
+    //     if(validateCaptcha(user_captcha_value)){
+    //         setDisabled(false)
+    //     }
+    //     else{
+    //         setDisabled(true)
+    //     }
+    // }
 
 
 
-    useEffect(()=>{
-        loadCaptchaEnginge(6)
-    })
+    // useEffect(()=>{
+    //     loadCaptchaEnginge(6)
+    // })
     
     return (
         <>
@@ -60,15 +60,15 @@ const Login = () => {
           </label>
           <input type="password" placeholder="password" name='password' className="input input-bordered" required />
         </div>
-        <div className="form-control">
+        {/* <div className="form-control">
           <label className="label">
           <LoadCanvasTemplate />
             <span className="label-text"></span>
           </label>
           <input onBlur={handlecaptcha} type="text" placeholder="type here" name='captcha' className="input input-bordered" />
-        </div>
+        </div> */}
         <div className="form-control ">
-        <button className="btn btn-primary " disabled={disabled}>Login</button>
+        <button className="btn btn-primary " >Login</button>
         </div>
       </form>
       <div >
