@@ -1,12 +1,29 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
+  const {user, logoutUser} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser()
+    .then(res => {
+      navigate('/login')
+      Swal.fire({
+        title: "Logged out",
+        icon: "success"
+      });
+    })
+  }
+
     const navlinks = <>
-          <li><NavLink to={'/'}>Home</NavLink></li>
-          <li><NavLink to={'/menus'}>Our Menu</NavLink></li>
-          <li><NavLink to={'/order/salad'}>Our Order</NavLink></li>
+          <li className='mr-2 md:py-0 py-2'><NavLink to={'/'}>Home</NavLink></li>
+          <li  className='mr-2 md:py-0 py-2'><NavLink to={'/menus'}>Our Menu</NavLink></li>
+          <li  className='mr-2 md:py-0 py-2'><NavLink to={'/order/salad'}>Our Order</NavLink></li>
+          {user ? <button onClick={handleLogout} className='btn-ghost px-4 rounded-md'>Logout</button> :<li><NavLink to={'/login'}>Login</NavLink></li>}
     </>
 
 

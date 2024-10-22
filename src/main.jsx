@@ -6,6 +6,7 @@ import MainLayout from './Layout/MainLayout'
 import Home from './pages/Home/Home/Home'
 import Routes from './routes/Routes'
 import { HelmetProvider } from 'react-helmet-async'
+import AuthProvider from './provider/Authprovider'
 
 
 // const router = createBrowserRouter([
@@ -22,8 +23,10 @@ import { HelmetProvider } from 'react-helmet-async'
 // ]);
 
 createRoot(document.getElementById('root')).render(
-    <HelmetProvider>
+    <AuthProvider>
+      <HelmetProvider>
       <RouterProvider router={Routes} />
     </HelmetProvider>
+    </AuthProvider>
 
 )

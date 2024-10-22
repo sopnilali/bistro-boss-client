@@ -3,6 +3,8 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import Menu from "../components/Menu/Menu";
 import OrderFood from "../pages/Order/OrderFood/OrderFood";
+import Login from "../pages/Login/Login";
+import AdminLayout from "../Layout/AdminLayout";
 
 const Routes = createBrowserRouter([
     {
@@ -23,6 +25,15 @@ const Routes = createBrowserRouter([
         }
       ]
     },
+    {
+      element: <AdminLayout/>,
+      children:[
+        {
+          path: "login",
+          element: <Login/>,
+        }
+      ]
+    }
 ]);
 
 export default Routes
