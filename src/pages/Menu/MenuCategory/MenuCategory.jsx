@@ -1,8 +1,9 @@
 import React from 'react';
 import MenuItems from '../../../shared/MenuItems/MenuItems';
 import MenuCover from '../../../shared/MenuCover/MenuCover';
+import { Link } from 'react-router-dom';
 
-const MenuCategory = ({items, title, coverImg, menuDes }) => {
+const MenuCategory = ({items, title, coverImg, menuDes, _id }) => {
 
 
     return (
@@ -16,7 +17,7 @@ const MenuCategory = ({items, title, coverImg, menuDes }) => {
             }
             </div>
             <div className='text-center mb-5'>
-                <button className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white uppercase">Order Your Favourite Food</button>
+                <Link to={`/order/${title ? title :'offered'}`} className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white uppercase">Order Your Favourite Food</Link>
             </div>
         </div>
     );

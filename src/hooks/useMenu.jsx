@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useMenu = () => {
 
@@ -6,11 +6,11 @@ const useMenu = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch('menu.json')
+        fetch('http://localhost:3000/api/menu')
         .then(res => res.json())
         .then(data => {
-            setMenu(data)
-            setLoading(false)
+            setMenu(data);
+            setLoading(false);
         })
     },[])
 
