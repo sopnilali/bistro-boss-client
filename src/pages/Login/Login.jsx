@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import loginImg from '../../assets/img/others/authentication2.png'
 import SocialLogin from './SocialLogin';
-import useAuth from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 
 const Login = () => {

@@ -1,10 +1,11 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
 
-    const {user, googleLogin} = useAuth();
+    const {googleLogin} = useAuth();
 
     const navigate = useNavigate();
 
@@ -13,6 +14,10 @@ const SocialLogin = () => {
         .then(res => {
             console.log(res);
             navigate('/')
+            Swal.fire({
+                title: "Logging Successfully",
+                icon: "success"
+              });
         })
     }
     return (
