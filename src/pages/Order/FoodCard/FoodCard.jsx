@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const FoodCard = ({item}) => {
 
@@ -10,6 +11,8 @@ const FoodCard = ({item}) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const axiosSecure = useAxiosSecure();
+
   const [showModal, setShowModal] = useState(false);
 
       const handleShowModal = () => {
@@ -17,8 +20,39 @@ const FoodCard = ({item}) => {
       };
 
       const handleAddtoCart = (food) =>{
+
+        const { name, image, price, recipe, _id } = food
+
         if(user && user.email){
-          //toto cart add
+          const cartItems = {
+            menuId : _id,
+            email : user.email,
+            name,
+            price,
+            image
+          }
+          axiosSecure.post('/api/cart', cartItems)
+          .then(res => {
+            if(res.data.insertedId === null){
+
+              Swal.fire({
+                title: 'Item already in cart',
+                text: `${name} is already in your cart`,
+                icon:'info',
+                confirmButtonColor: '#3085d6'
+              })
+            }
+            else{
+              Swal.fire({
+                title: 'Item add to cart',
+                text: `${name} has been added to cart`,
+                icon:'success',
+                confirmButtonColor: '#3085d6'
+              })
+            }
+            
+          })
+
         }
         else{
           Swal.fire({
