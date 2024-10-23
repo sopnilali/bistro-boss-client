@@ -23,7 +23,7 @@ const Navbar = () => {
           <li className='mr-2 md:py-0 py-2'><NavLink to={'/'}>Home</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/menus'}>Our Menu</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/order/salad'}>Our Order</NavLink></li>
-          {user ? <button onClick={handleLogout} className='btn-ghost px-4 rounded-md'>Logout</button> :<li><NavLink to={'/login'}>Login</NavLink></li>}
+          
     </>
 
 
@@ -60,7 +60,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Get Started</a>
+  {user ? <button onClick={handleLogout} className='btn px-4 rounded-md'>Logout</button> :<li><NavLink to={'/login'}>Login</NavLink></li>}
   </div>
 </div>   
         </>

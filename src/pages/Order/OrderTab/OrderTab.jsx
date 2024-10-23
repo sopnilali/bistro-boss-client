@@ -16,6 +16,9 @@ const OrderTab = ({ items }) => {
       items.map(item => 
         <FoodCard key={item._key} item={item} />)
       }
+
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
     </div>
   );
 };

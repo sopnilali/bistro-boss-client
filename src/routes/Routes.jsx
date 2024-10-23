@@ -5,10 +5,10 @@ import Menu from "../components/Menu/Menu";
 import OrderFood from "../pages/Order/OrderFood/OrderFood";
 import Login from "../pages/Login/Login";
 import AdminLayout from "../Layout/AdminLayout";
+import Register from "../pages/Register/Register";
 
 const Routes = createBrowserRouter([
     {
-      path: "/",
       element: <MainLayout/>,
       children:[
         {
@@ -31,6 +31,10 @@ const Routes = createBrowserRouter([
         {
           path: "login",
           element: <Login/>,
+        },
+        {
+          path:'register',
+          element: <Register/>,
         }
       ]
     }

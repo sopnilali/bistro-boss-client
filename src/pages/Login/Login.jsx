@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import loginImg from '../../assets/img/others/authentication2.png'
 import SocialLogin from './SocialLogin';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+
+  const {loginUser} = useAuth();
+  const navigate = useNavigate();
 
     const [disabled, setDisabled ] = useState(true)
     const handleLoginForm = (e)=> {
@@ -14,9 +19,20 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
         console.log(email, password)
-        
         // clear form inputs
-        e.target.reset();
+        loginUser(email, password)
+        .then(result => {
+          Swal.fire( {
+            title: "Logging Successfully",
+            icon: "success"
+          })
+          e.target.reset();
+          navigate('/')
+        })
+
+       
+
+
     }
 
     const handlecaptcha = (e)=> {
@@ -37,17 +53,17 @@ const Login = () => {
     
     return (
         <>
-            <div className="hero bg-base-200 min-h-screen">
-  <div className="hero-content flex-col lg:flex-row">
+            <div className="hero bg-forms min-h-screen ">
+  <div className="hero-content w-full min-h-[80%] flex-col lg:flex-row border shadow-lg drop-shadow-lg">
     <div className="text-center lg:text-left max-w-2xl">
       <img src={loginImg} alt="" />
     </div>
     
-    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-    <div className="card-header">
+    <div className="card bg-base-100  w-full max-w-sm shrink-0 ">
+    <div className="card-header ">
           <h2 className="text-xl -my-10 font-semibold text-center">Login</h2>
         </div>
-      <form onSubmit={handleLoginForm} className="card-body">
+      <form onSubmit={handleLoginForm} className="card-body ">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -75,8 +91,7 @@ const Login = () => {
       <div className='divider space-y-3'>Social Login</div>
       <SocialLogin/>
       </div>
-      
-      
+      <p className="text-center ">Don't have an account?<Link to="/register"> Register</Link></p>
       <p className="text-center ">Go to <Link to="/">Home</Link></p>
     </div>
   </div>
