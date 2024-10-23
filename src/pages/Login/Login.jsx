@@ -24,7 +24,7 @@ const Login = () => {
         .then(result => {
           Swal.fire( {
             title: "Logging Successfully",
-            icon: "success"
+            icon: "success",
           })
           e.target.reset();
           navigate('/')

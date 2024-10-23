@@ -1,5 +1,6 @@
 import MenuItems from '../../../shared/MenuItems/MenuItems';
 import useMenu from '../../../hooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const PopularMenu = () => {
 
@@ -17,7 +18,7 @@ const PopularMenu = () => {
             }
             </div>
             <div className='text-center'>
-            <button className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white">View Full Menu</button>
+            <Link to={'/menus'} className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white">View Full Menu</Link>
             </div>
         </div>
     );

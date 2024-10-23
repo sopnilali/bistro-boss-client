@@ -6,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../hooks/useMenu';
 import OrderTab from '../OrderTab/OrderTab';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const OrderFood = () => {
     const {category} = useParams();
@@ -25,6 +26,9 @@ const OrderFood = () => {
     
     return (
         <div>
+        <Helmet>
+            <title>Our Order | Bistro Boss</title>
+        </Helmet>
             <Cover img={OrderImg} title={'OUR ORDER'} description={'Would you like to try a dish?'} />
 
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>

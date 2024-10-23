@@ -4,13 +4,13 @@ const FoodCard = ({item}) => {
 
   const [showModal, setShowModal] = useState(false);
 
-      const handleShowModal = (item) => {
+      const handleShowModal = () => {
         setShowModal(!showModal);
       };
 
     return (
         <>
-        <div key={item._id} className=" rounded-xl bg-base-100 border hover:shadow-xl outline-none relative">
+        <div key={item._id} className=" rounded-xl bg-base-100 border hover:shadow-xl duration-300 outline-none relative">
                 <figure >
                   <img
                   className='w-full max-h-[424px] '
@@ -38,7 +38,7 @@ const FoodCard = ({item}) => {
             <h3 className="font-bold text-lg mt-3">{item.name}</h3>
             <p className="py-4">{item.recipe}</p>
             <p className='absolute top-10 right-10 bg-slate-950 text-white px-4 rounded-lg'>{item.price}</p>
-            <div className="modal-action">
+            <div className="modal-action ">
               <button className="btn" onClick={handleShowModal}>
                 Close
               </button>

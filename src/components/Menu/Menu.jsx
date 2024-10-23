@@ -11,6 +11,7 @@ import dessertbg from '../../assets/img/menu/dessert-bg.jpeg'
 import pizzabg from '../../assets/img/menu/pizza-bg.jpg'
 import saladbg from '../../assets/img/menu/salad-bg.jpg'
 import soupbg from '../../assets/img/menu/soup-bg.jpg'
+import { Helmet } from 'react-helmet-async';
 const Menu = () => {
 
     const [menu] = useMenu();
@@ -28,6 +29,9 @@ const Menu = () => {
 
     return (
         <>
+        <Helmet>
+            <title>Our Menu | Bistro Boss</title>
+        </Helmet>
         <div className='container mx-auto'>
             <Cover img={bgMenu} title={'OUR MENU'} description={'Would you like to try a dish?'} />
             <div className='mt-10'>
