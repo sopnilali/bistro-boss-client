@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://bistro-boss-server-six-delta.vercel.app',
+    withCredentials: true,
 })
 const useAxiosSecure = () => {
     return axiosSecure;
