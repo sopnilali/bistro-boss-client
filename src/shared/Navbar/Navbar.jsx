@@ -60,7 +60,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-  {user ? <button onClick={handleLogout} className='btn px-4 rounded-md'>Logout</button> :<li><NavLink to={'/login'}>Login</NavLink></li>}
+  {user ? <button onClick={handleLogout} className='btn px-4 rounded-md'>Logout</button> :<li className='list-none btn  rounded-md'><NavLink to={'/login'}>Login</NavLink></li>}
   </div>
 </div>   
         </>
