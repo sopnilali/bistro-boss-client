@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useCarts from '../../../hooks/useCarts';
 
 const FoodCard = ({item}) => {
 
@@ -10,6 +11,8 @@ const FoodCard = ({item}) => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const [,refetch] = useCarts();
+
 
   const axiosSecure = useAxiosSecure();
 
@@ -34,7 +37,7 @@ const FoodCard = ({item}) => {
           axiosSecure.post('/api/cart', cartItems)
           .then(res => {
             if(res.data.insertedId === null){
-
+              
               Swal.fire({
                 title: 'Item already in cart',
                 text: `${name} is already in your cart`,
@@ -43,6 +46,7 @@ const FoodCard = ({item}) => {
               })
             }
             else{
+              refetch();
               Swal.fire({
                 title: 'Item add to cart',
                 text: `${name} has been added to cart`,

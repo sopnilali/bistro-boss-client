@@ -9,7 +9,7 @@ const useCarts = () => {
     const {user} = useAuth();
 
     const {data: cart = [], refetch} = useQuery({
-        queryKey: ['cart'],
+        queryKey: ['cart', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/api/cart?email=${user?.email}`)
             return res.data

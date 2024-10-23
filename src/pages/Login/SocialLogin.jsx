@@ -2,25 +2,25 @@ import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SocialLogin = () => {
 
     const {googleLogin} = useAuth();
     const location = useLocation();
-
+    
     const from = location.state?.from?.pathname || "/"
-
     const navigate = useNavigate();
-
+    
+    
     const handleSocialLogin = (media)=>{
         media()
         .then(res => {
-            console.log(res);
-            navigate(from, {replace: true})
             Swal.fire({
                 title: "Logging Successfully",
                 icon: "success"
               });
+            navigate(from, {replace: true})
         })
     }
     return (

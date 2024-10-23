@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 const Register = () => {
 
   const { CreateUser, updateUserProfile } = useAuth();
@@ -15,6 +16,7 @@ const Register = () => {
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
+  const axiosPublic = useAxiosPublic();
 
   const handleRegister = async (data) => {
 
@@ -26,20 +28,36 @@ const Register = () => {
       }
     })
     if (result.data.success) {
-      reset()
       const full_name = data.full_name
       const email = data.email
       const photo = result.data.data.display_url
       const password = data.password
       CreateUser(email, password)
         .then(res => {
+          reset();
           console.log(res.user)
           updateUserProfile(full_name, photo)
-          Swal.fire({
-            title: "Registration Successful",
-            icon: "success"
+          .then(() => {
+            const userInfo = {
+              name: data.full_name,
+              email: data.email,
+              photo: photo
+            }
+            axiosPublic.post('/api/users', userInfo)
+            .then(res => {
+              console.log(res)
+              if(res.status == 200){
+                navigate('/')
+                Swal.fire({
+                  title: "Registration Successful",
+                  showConfirmButton:false,
+                  icon: "success",
+                  timer: 1500
+                })
+              }
+            })
+
           })
-          navigate('/')
         })
     }
   }
