@@ -1,11 +1,14 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
 
     const {googleLogin} = useAuth();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/"
 
     const navigate = useNavigate();
 
@@ -13,7 +16,7 @@ const SocialLogin = () => {
         media()
         .then(res => {
             console.log(res);
-            navigate('/')
+            navigate(from, {replace: true})
             Swal.fire({
                 title: "Logging Successfully",
                 icon: "success"

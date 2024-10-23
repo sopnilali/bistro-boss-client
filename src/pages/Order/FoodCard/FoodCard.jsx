@@ -1,12 +1,41 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+import useAuth from '../../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const FoodCard = ({item}) => {
+
+  const {user} = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
 
       const handleShowModal = () => {
         setShowModal(!showModal);
       };
+
+      const handleAddtoCart = (food) =>{
+        if(user && user.email){
+          //toto cart add
+        }
+        else{
+          Swal.fire({
+            title: 'You are not logged in',
+            text: `Please login to add to cart`,
+            icon:'warning',
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: 'Login'
+          }).then(result => {
+            if (result.isConfirmed) {
+              navigate('/login', {state: {from:location}})
+            }
+          })
+        }
+      }
 
     return (
         <>
@@ -23,7 +52,7 @@ const FoodCard = ({item}) => {
                   <p className='text-base'>{item.recipe}.</p>
                   <p className='absolute top-2 right-5 bg-slate-950 text-white px-4 rounded-lg'>{item.price}</p>
                   <div className="card-actions justify-center my-6">
-                    <button className="btn border-0 border-b-yellow-600 border-b-2 text-yellow-600 hover:bg-gray-900 hover:text-yellow-600">Add to Cart</button>
+                    <button onClick={()=>handleAddtoCart(item)} className="btn border-0 border-b-yellow-600 border-b-2 text-yellow-600 hover:bg-gray-900 hover:text-yellow-600">Add to Cart</button>
                   </div>
                 </div>
               </div>

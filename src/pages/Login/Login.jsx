@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import loginImg from '../../assets/img/others/authentication2.png'
 import SocialLogin from './SocialLogin';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 
@@ -10,6 +10,10 @@ const Login = () => {
 
   const {loginUser} = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/"
+  console.log(from)
 
     const [disabled, setDisabled ] = useState(true)
     const handleLoginForm = (e)=> {
@@ -27,7 +31,7 @@ const Login = () => {
             icon: "success",
           })
           e.target.reset();
-          navigate('/')
+          navigate(from, {replace:true})
         })
 
        
@@ -84,7 +88,7 @@ const Login = () => {
           <input onBlur={handlecaptcha}  type="text" placeholder="type here" name='captcha' className="input input-bordered" />
         </div>
         <div className="form-control ">
-        <button className="btn btn-primary " disabled={disabled}>Login</button>
+        <button className="btn btn-primary " disabled={false}>Login</button>
         </div>
       </form>
       <div >

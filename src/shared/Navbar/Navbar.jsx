@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -23,6 +24,8 @@ const Navbar = () => {
           <li className='mr-2 md:py-0 py-2'><NavLink to={'/'}>Home</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/menus'}>Our Menu</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/order/salad'}>Our Order</NavLink></li>
+          <li  className='mr-2 md:py-0 py-2'><NavLink to={'/secret'}>Secret</NavLink></li>
+          <li  className='mr-2 md:py-0 py-2'><NavLink className="py-2 bg-opacity-40 hover:bg-gray-800" to={'/'}><div className="badge badge-secondary w-full text-md h-full"> <FaShoppingCart className='mr-1' />+0</div></NavLink></li>
           
     </>
 

@@ -6,6 +6,8 @@ import OrderFood from "../pages/Order/OrderFood/OrderFood";
 import Login from "../pages/Login/Login";
 import AdminLayout from "../Layout/AdminLayout";
 import Register from "../pages/Register/Register";
+import PrivateRoutes from "./PrivateRoutes";
+import Secret from "../pages/Secret/Secret";
 
 const Routes = createBrowserRouter([
     {
@@ -20,8 +22,16 @@ const Routes = createBrowserRouter([
           element: <Menu/>,
         },
         {
+          path: "order",
+          element: <OrderFood/>,
+        },
+        {
           path: "order/:category",
           element: <OrderFood/>,
+        },
+        {
+          path:'secret',
+          element: <PrivateRoutes><Secret/></PrivateRoutes>,
         }
       ]
     },

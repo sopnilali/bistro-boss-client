@@ -1,5 +1,6 @@
 import React from 'react';
 import featuredImg from '../../../assets/img/home/featured.jpg'
+import { Link } from 'react-router-dom';
 
 
 const Featured = () => {
@@ -18,7 +19,7 @@ const Featured = () => {
                         <h2 className="text-2xl  text-white">March 20, 2023</h2>
                         <h3 className="text-2xl  text-white">WHERE CAN I GET SOME?</h3>
                         <p className='text-base text-justify'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.</p>
-                        <button className="btn border-0 mt-3 border-b-white bg-opacity-0 border-b-2 text-white hover:bg-white hover:text-black">ORDER NOW</button>
+                        <Link to={'/order'} className="btn border-0 mt-3 border-b-white bg-opacity-0 border-b-2 text-white hover:bg-white hover:text-black">ORDER NOW</Link>
                     </div>
                 </div>
             </div>
