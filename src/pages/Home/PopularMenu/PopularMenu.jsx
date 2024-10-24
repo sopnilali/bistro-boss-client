@@ -18,7 +18,7 @@ const PopularMenu = () => {
             }
             </div>
             <div className='text-center'>
-            <Link to={'/menus'} className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white">View Full Menu</Link>
+            <Link to={'/menu'} className="btn border-0 mt-3 border-b-black border-b-2 text-black hover:bg-black hover:text-white">View Full Menu</Link>
             </div>
         </div>
     );
