@@ -92,8 +92,8 @@ const Login = () => {
         </div>
       </form>
       <div >
-      <div className='divider space-y-3'>Social Login</div>
-      <SocialLogin/>
+      {/* <div className='divider space-y-3'>Social Login</div> */}
+      {/* <SocialLogin/> */}
       </div>
       <p className="text-center ">Don't have an account?<Link to="/register"> Register</Link></p>
       <p className="text-center ">Go to <Link to="/">Home</Link></p>

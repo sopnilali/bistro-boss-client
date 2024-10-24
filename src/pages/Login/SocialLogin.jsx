@@ -3,12 +3,14 @@ import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useUser from '../../hooks/useUser';
 
 const SocialLogin = () => {
 
     const {googleLogin} = useAuth();
     const location = useLocation();
     const axiosPublic = useAxiosPublic();
+    const [refetch] = useUser();
     
     const from = location.state?.from?.pathname || "/"
     const navigate = useNavigate();
@@ -16,16 +18,15 @@ const SocialLogin = () => {
     
     const handleSocialLogin = (media)=>{
         media()
-        .then(res => {     
+        .then(res => {  
+            navigate(from, {replace: true})   
             const userInfo = {
                 name: res.user?.displayName,
                 email: res.user?.email,
                 photo: res.user?.photoURL
             }
-            
             axiosPublic.post('/api/users', userInfo)
             .then(res => {
-                console.log(res.data)
                 Swal.fire({
                 title: "Logging Successfully",
                 icon: "success"
