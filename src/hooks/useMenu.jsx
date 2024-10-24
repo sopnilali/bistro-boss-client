@@ -1,20 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 const useMenu = () => {
-
-    const [menu, setMenu ]= useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(()=>{
-        fetch('https://bistro-boss-server-six-delta.vercel.app/api/menu')
-        .then(res => res.json())
-        .then(data => {
-            setMenu(data);
-            setLoading(false);
-        })
-    },[])
-
-    return [menu, loading]
+    const {data: menu = [], refetch} = useQuery({
+        queryKey: 'menu',
+        queryFn: async () => {
+            const res = await fetch('https://bistro-boss-server-six-delta.vercel.app/api/menu')
+            return await res.json()
+        }
+    })
+    return [menu, refetch]
 };
 
 export default useMenu;

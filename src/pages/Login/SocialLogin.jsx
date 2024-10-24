@@ -8,6 +8,7 @@ const SocialLogin = () => {
 
     const {googleLogin} = useAuth();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
     
     const from = location.state?.from?.pathname || "/"
     const navigate = useNavigate();
@@ -15,12 +16,23 @@ const SocialLogin = () => {
     
     const handleSocialLogin = (media)=>{
         media()
-        .then(res => {
-            Swal.fire({
+        .then(res => {     
+            const userInfo = {
+                name: res.user?.displayName,
+                email: res.user?.email,
+                photo: res.user?.photoURL
+            }
+            
+            axiosPublic.post('/api/users', userInfo)
+            .then(res => {
+                console.log(res.data)
+                Swal.fire({
                 title: "Logging Successfully",
                 icon: "success"
               });
-            navigate(from, {replace: true})
+              navigate(from, {replace: true})
+            })
+            
         })
     }
     return (

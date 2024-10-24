@@ -36,6 +36,7 @@ const FoodCard = ({item}) => {
           }
           axiosSecure.post('/api/cart', cartItems)
           .then(res => {
+            console.log(res)
             if(res.data.insertedId === null){
               
               Swal.fire({

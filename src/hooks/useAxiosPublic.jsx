@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosPublic = axios.create({
-    baseURL: 'https://bistro-boss-server-six-delta.vercel.app', // replace with your public API URL
+    baseURL: 'https://bistro-boss-server-six-delta.vercel.app',
 })
 
 const useAxiosPublic = () => {

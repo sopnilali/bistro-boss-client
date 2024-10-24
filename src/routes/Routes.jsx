@@ -9,6 +9,10 @@ import Register from "../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import Secret from "../pages/Secret/Secret";
 import Cart from "../pages/Dashboard/Cart/Cart";
+import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
+import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import ManageBooking from "../pages/Dashboard/manageBooking/manageBooking";
 
 const Routes = createBrowserRouter([
   {
@@ -54,6 +58,25 @@ const Routes = createBrowserRouter([
         path: 'cart',
         element: <PrivateRoutes><Cart /></PrivateRoutes>,
       }
+      // admin routes start
+      ,
+      {
+        path: 'addItems',
+        element: <AddItems/>,
+      },
+      {
+        path: 'manageItem',
+        element: <ManageItems/>,
+      },
+      {
+        path: 'manageBooking',
+        element: <ManageBooking/>
+      },
+      {
+        path:'allUser',
+        element: <AllUsers/>,
+      }
+      // admin routes end
     ]
   }
 ]);
