@@ -12,7 +12,7 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
-import ManageBooking from "../pages/Dashboard/manageBooking/manageBooking";
+import ManageBooking from "../pages/Dashboard/ManageBooking/ManageBooking";
 
 const Routes = createBrowserRouter([
   {
