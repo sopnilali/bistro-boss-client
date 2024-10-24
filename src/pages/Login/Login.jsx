@@ -13,7 +13,6 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/"
-  console.log(from)
 
     const [disabled, setDisabled ] = useState(true)
     const handleLoginForm = (e)=> {
@@ -93,7 +92,7 @@ const Login = () => {
       </form>
       <div >
       {/* <div className='divider space-y-3'>Social Login</div> */}
-      {/* <SocialLogin/> */}
+      <SocialLogin/>
       </div>
       <p className="text-center ">Don't have an account?<Link to="/register"> Register</Link></p>
       <p className="text-center ">Go to <Link to="/">Home</Link></p>

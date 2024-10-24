@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
@@ -23,7 +23,7 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const googleLogin = ()=> {
-        return signInWithRedirect(auth, googleProvider)
+        return signInWithPopup(auth, googleProvider)
     }
 
     const logoutUser = ()=> {
@@ -57,18 +57,20 @@ const AuthProvider = ({children}) => {
             const userEmail = currentUser?.email || user?.email;  
             const loggedUser = { email: userEmail }; 
             setUser(currentUser);
-            setLoading(false);
+            
             if(currentUser){
-                axiosPublic.post('/api/jwt', loggedUser, {withCredentials:true})
+                axiosPublic.post('/api/jwt', loggedUser, {withCredentials: true})
                 .then(res => {
-                    console.log('token response', res.data);
+                    
                 })
             }
             else{
-                axiosPublic.post('/api/logout', loggedUser, {withCredentials:true})
-                .then(res => console.log(res))
+                axiosPublic.post('/api/logout', loggedUser, {withCredentials: true})
+                .then(res => {
+                    
+                })
             }
-            
+            setLoading(false)
         })
         
         

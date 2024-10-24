@@ -43,7 +43,7 @@ const Register = () => {
               email: data.email,
               photo: photo
             }
-            axiosPublic.post('/api/users', userInfo)
+            axiosPublic.post('/api/users', userInfo, {withCredentials: true})
             .then(res => {
               console.log(res)
               if(res.status == 200){

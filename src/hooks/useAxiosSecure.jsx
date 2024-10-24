@@ -9,8 +9,8 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
     const navigate = useNavigate()
     const {logoutUser} = useAuth();
-    axiosSecure.interceptors.request.use((config)=> {
-        return config;
+    axiosSecure.interceptors.request.use((res)=> {
+        return res;
     },
     (err)=> {
         return Promise.reject(err);
