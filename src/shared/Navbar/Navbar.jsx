@@ -29,7 +29,7 @@ const Navbar = () => {
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/menu'}>Our Menu</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/order/salad'}>Our Order</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/secret'}>Secret</NavLink></li>
-          {user ? <li  className='mr-2 md:py-0 py-2'><NavLink className="py-2 bg-opacity-40 hover:bg-gray-800" to={'/dashboard/cart'}><div className="badge badge-secondary w-full text-md h-full"> <FaShoppingCart className='mr-1' />+{cart.length}</div></NavLink></li> : ""}
+          {user ? <li  className='mr-2 md:py-0 py-2'><NavLink className="py-2 bg-opacity-40 hover:bg-gray-800" to={'/user/cart'}><div className="badge badge-secondary w-full text-md h-full"> <FaShoppingCart className='mr-1' />+{cart.length}</div></NavLink></li> : ""}
           
     </>
 

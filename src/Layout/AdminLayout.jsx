@@ -3,8 +3,9 @@ import { FaAd, FaBook, FaDoorOpen, FaHome, FaList, FaListAlt, FaShoppingCart, Fa
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { FaShop, FaShopLock, FaUser } from 'react-icons/fa6';
+import { FaShop } from 'react-icons/fa6';
 import useCarts from '../hooks/useCarts';
+import useAdmin from '../hooks/useAdmin';
 
 const AdminLayout = () => {
 
@@ -25,7 +26,7 @@ const AdminLayout = () => {
         })
       }
 
-      const isAdmin = true;
+      const [isAdmin] = useAdmin();
 
     return (
         <div className='container mx-auto'>
@@ -36,20 +37,20 @@ const AdminLayout = () => {
                     {isAdmin ? <>
                         <h2 className=' text-2xl text-center font-bold py-5'>Admin Dashboard</h2>
                         <li >
-                        <NavLink to={'/dashboard/'}>Admin Home</NavLink>
+                        <NavLink to={'/admin/dashboard'}>Admin Home</NavLink>
                     </li>
                      <li >
-                        <NavLink to={'/dashboard/addItems'}><FaUtensils/>Add Items</NavLink>
+                        <NavLink to={'/admin/addItems'}><FaUtensils/>Add Items</NavLink>
                     </li>
 
                     <li>
-                        <NavLink to={'/dashboard/manageItem'}><FaListAlt/> Manage Items</NavLink>
+                        <NavLink to={'/admin/manageItem'}><FaListAlt/> Manage Items</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/dashboard/manageBooking'}><FaBook/> Manage Booking</NavLink>
+                        <NavLink to={'/admin/manageBooking'}><FaBook/> Manage Booking</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/dashboard/allUser'}><FaUsers/> All User</NavLink>
+                        <NavLink to={'/admin/allUser'}><FaUsers/> All User</NavLink>
                     </li>
                     <div className='divider'></div>
                     <li>
@@ -67,19 +68,19 @@ const AdminLayout = () => {
                     </>: <>
                     <h2 className=' text-2xl text-center font-bold py-5'>User Dashboard</h2>
                     <li >
-                        <NavLink to={'/dashboard/'}>User Home</NavLink>
+                        <NavLink to={'/user/dashboard'}>User Home</NavLink>
                     </li>
                      <li >
-                        <NavLink to={'/dashboard/cart'}><FaShoppingCart/>My Cart ({cart.length})</NavLink>
+                        <NavLink to={'/user/cart'}><FaShoppingCart/>My Cart ({cart.length})</NavLink>
                     </li>
 
                     <li>
-                        <NavLink to={'/dashboard/review'}><FaAd/> Add Review</NavLink>
+                        <NavLink to={'/user/review'}><FaAd/> Add Review</NavLink>
                     </li>
 
 
                     <li>
-                        <NavLink to={'/dashboard/booking'}><FaList/> My Booking</NavLink>
+                        <NavLink to={'/user/booking'}><FaList/> My Booking</NavLink>
                     </li>
                     <div className='divider'></div>
                     <li>

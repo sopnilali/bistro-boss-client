@@ -13,6 +13,12 @@ import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import ManageBooking from "../pages/Dashboard/ManageBooking/ManageBooking";
+import MyBooking from "../pages/Dashboard/MyBooking/MyBooking";
+import AddReview from "../pages/Dashboard/AddReview/AddReview";
+import Reservation from "../pages/Dashboard/Reservation/Reservation";
+import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
+import AdminRoutes from "./AdminRoutes";
 
 const Routes = createBrowserRouter([
   {
@@ -42,43 +48,67 @@ const Routes = createBrowserRouter([
   },
   // authentication routes start
   {
+    path: "admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <AdminRoutes> <AdminDashboard/></AdminRoutes>,
+      },
+      {
+        path: "addItems",
+        element: <AdminRoutes><AddItems /></AdminRoutes>,
+      },
+      {
+        path: "manageItem",
+        element: <AdminRoutes><ManageItems /></AdminRoutes>,
+      },
+      {
+        path: "manageBooking",
+        element: <AdminRoutes><ManageBooking /></AdminRoutes>,
+      },
+      {
+        path: "allUser",
+        element: <AdminRoutes><AllUsers /></AdminRoutes>,
+      }
+    ]
+  },
+  {
+    path: 'user',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <PrivateRoutes><UserDashboard/></PrivateRoutes>,
+      },
+      {
+        path: 'reservation',
+        element: <PrivateRoutes><Reservation /></PrivateRoutes>
+      },
+      {
+        path: "cart",
+        element: <PrivateRoutes><Cart /></PrivateRoutes>,
+      },
+      {
+        path: 'booking',
+        element: <PrivateRoutes><MyBooking /></PrivateRoutes>,
+      },
+      {
+        path: 'review',
+        element: <PrivateRoutes><AddReview /></PrivateRoutes>,
+      }
+    ]
+  },
+  // authentication routes end
+  {
     path: "login",
     element: <Login />,
   },
   {
-    path: '/register',
+    path: "register",
     element: <Register />,
   },
   // authentication routes end
-  {
-    path: 'dashboard',
-    element: <PrivateRoutes><AdminLayout /></PrivateRoutes>,
-    children: [
-      {
-        path: 'cart',
-        element: <PrivateRoutes><Cart /></PrivateRoutes>,
-      }
-      // admin routes start
-      ,
-      {
-        path: 'addItems',
-        element: <AddItems/>,
-      },
-      {
-        path: 'manageItem',
-        element: <ManageItems/>,
-      },
-      {
-        path: 'manageBooking',
-        element: <ManageBooking/>
-      },
-      {
-        path:'allUser',
-        element: <AllUsers/>,
-      }
-      // admin routes end
-    ]
-  }
 ]);
 
 export default Routes

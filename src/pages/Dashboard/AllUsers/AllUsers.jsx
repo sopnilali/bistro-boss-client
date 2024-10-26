@@ -3,18 +3,28 @@ import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import { AiFillDelete } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaUsers } from 'react-icons/fa';
-import useUser from '../../../hooks/useUser';
 import Swal from 'sweetalert2';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const AllUsers = () => {
 
-    const [userData, refetch] = useUser();
-    const axiosSecure = useAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
+    const {user} = useAuth();
+    
     const {deleteUserProfile} = useAuth();
     
+    const {data : userData = [], refetch } = useQuery({
+        queryKey: ['users', user?.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/api/users`)
+            return res.data
+        }
 
+    })
+ 
+    
     const handleRoleAdmin = (id) => {
 
         Swal.fire({

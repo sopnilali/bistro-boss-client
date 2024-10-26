@@ -2,15 +2,15 @@ import React from 'react';
 import useCarts from '../../../hooks/useCarts';
 import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import { MdDeleteForever } from 'react-icons/md';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const Cart = () => {
 
     const [cart, refetch] = useCarts();
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-    const axiosSecure = useAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
 
     const handleCartDelete = (id) => {
 
@@ -26,8 +26,8 @@ const Cart = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/api/cart?id=${id}`)
                 .then(res=> {
-                    refetch();
                     if(res.data.deletedCount > 0){
+                        refetch()
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",

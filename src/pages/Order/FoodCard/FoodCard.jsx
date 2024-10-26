@@ -14,7 +14,7 @@ const FoodCard = ({item}) => {
   const [,refetch] = useCarts();
 
 
-  const axiosSecure = useAxiosSecure();
+  const [axiosSecure] = useAxiosSecure();
 
   const [showModal, setShowModal] = useState(false);
 
