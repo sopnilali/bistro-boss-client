@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -7,19 +6,21 @@ import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import { FaQuoteLeft } from "react-icons/fa";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { useQuery } from '@tanstack/react-query';
 
 
 const Testimonials = () => {
 
-    const [review, setReview] = useState([])
 
-    useEffect(() => {
-        fetch('https://bistro-boss-server-six-delta.vercel.app/api/review')
-        .then((res)=> res.json())
-        .then((data)=> setReview(data))
+    const baseURL = import.meta.env.VITE_BASE_URL
 
-    },[])
-    console.log(review)
+    const {data: review = []} = useQuery({
+        queryKey: 'review',
+        queryFn: async () => {
+            const res = await fetch(`${baseURL}/api/review`)
+            return await res.json()
+        }
+    })
 
     return (
         <div className='my-8'>

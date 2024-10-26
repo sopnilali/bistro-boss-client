@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 
 
@@ -29,7 +30,6 @@ const useAxiosSecure = () => {
 
     // intercepts 401 and 403 status
     axiosSecure.interceptors.response.use(function (response) {
-        console.log(response)
         return response;
     }, async (error) => {
         const status = error.response.status;
@@ -38,6 +38,12 @@ const useAxiosSecure = () => {
         if (status === 401 || status === 403) {
             await logoutUser();
             navigate('/login');
+            Swal.fire({
+                title: "Logged out",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+              });
         }
         return Promise.reject(error);
     })

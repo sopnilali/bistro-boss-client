@@ -6,7 +6,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SocialLogin = () => {
 
-    const {googleLogin} = useAuth();
+    const {user, googleLogin} = useAuth();
     const location = useLocation();
     const axiosPublic = useAxiosPublic();
     
@@ -25,8 +25,10 @@ const SocialLogin = () => {
             axiosPublic.post('/api/users', userInfo)
             .then(res => {
                 Swal.fire({
-                title: "Logging Successfully",
-                icon: "success"
+                title: `${userInfo.name} Logging Successfully`,
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
               });
               navigate(from, {replace: true})
             })

@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-  const {loginUser} = useAuth();
+  const { user, loginUser} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,8 +26,10 @@ const Login = () => {
         loginUser(email, password)
         .then(result => {
           Swal.fire( {
-            title: "Logging Successfully",
+            title: ` ${user.displayName} Logging Successfully`,
             icon: "success",
+            showConfirmButton: false,
+            timer: 1500
           })
           e.target.reset();
           navigate(from, {replace:true})

@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <Authprovider>
      <QueryClientProvider client={queryClient}>
      <HelmetProvider>
@@ -18,5 +18,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </HelmetProvider>
      </QueryClientProvider>
     </Authprovider>
-  </StrictMode>
 )

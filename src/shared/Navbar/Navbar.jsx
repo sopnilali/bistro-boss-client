@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { FaShoppingCart } from "react-icons/fa";
@@ -19,7 +19,9 @@ const Navbar = () => {
       navigate('/login')
       Swal.fire({
         title: "Logged out",
-        icon: "success"
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500
       });
     })
   }
@@ -30,6 +32,7 @@ const Navbar = () => {
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/order/salad'}>Our Order</NavLink></li>
           <li  className='mr-2 md:py-0 py-2'><NavLink to={'/secret'}>Secret</NavLink></li>
           {user ? <li  className='mr-2 md:py-0 py-2'><NavLink className="py-2 bg-opacity-40 hover:bg-gray-800" to={'/user/cart'}><div className="badge badge-secondary w-full text-md h-full"> <FaShoppingCart className='mr-1' />+{cart.length}</div></NavLink></li> : ""}
+          {user ? <li className='mr-2 mt-2 md:py-0 py-2'>{user.displayName}</li>: ""}
           
     </>
 

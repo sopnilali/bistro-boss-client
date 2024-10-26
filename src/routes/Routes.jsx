@@ -19,6 +19,7 @@ import Reservation from "../pages/Dashboard/Reservation/Reservation";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AdminRoutes from "./AdminRoutes";
+import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 
 const Routes = createBrowserRouter([
   {
@@ -62,6 +63,11 @@ const Routes = createBrowserRouter([
       {
         path: "manageItem",
         element: <AdminRoutes><ManageItems /></AdminRoutes>,
+      },
+      {
+        path: 'updateItem/:id',
+        element: <AdminRoutes><UpdateItem/></AdminRoutes>,
+        loader: ({params}) => fetch(`http://localhost:3000/api/details-menu/${params.id}`)
       },
       {
         path: "manageBooking",

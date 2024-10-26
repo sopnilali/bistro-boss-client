@@ -11,7 +11,7 @@ const MenuItems = ({ item }) => {
                     <h2 className='text-[20px]'>{name} </h2>
                     <p className='ml-1'>----------</p>
                 </div>
-                <p>{recipe}</p>
+                <p>{recipe.slice(0,120)}</p>
             </div>
             <h4 className='text-[20px] text-yellow-600'>${price}</h4>
         </div>

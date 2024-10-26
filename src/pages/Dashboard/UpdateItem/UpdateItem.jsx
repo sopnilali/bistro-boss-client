@@ -1,24 +1,28 @@
+import React from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-const AddItems = () => {
+const UpdateItem = () => {
+    const {id} = useParams();
+    const data = useLoaderData();
+    
+    const [axiosSecure] = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
+
+    const { name, recipe, category, price} = data
 
 
 
     const {handleSubmit, reset, register}= useForm();
 
-    const axiosPublic = useAxiosPublic();
-    const [axiosSecure] = useAxiosSecure();
-
-    const handleAddItems =  async(data) => {
-        const price = parseFloat(data?.price);
+    const handleUpdateItem =  async(data) => {
 
         const imageFile = { image: data.image[0] }
 
@@ -29,22 +33,35 @@ const AddItems = () => {
             })
         if (res.data.success) {
             const newData = {
-                name: data?.name,
-                category: data?.category,
-                price: price,
-                recipe: data?.recipe,
-                image: res.data.data?.display_url
+                name: data.name,
+                category: data.category,
+                price: parseFloat(data.price),
+                recipe: data.recipe,
+                image: res.data.data.display_url
             }
-            axiosSecure.post('/api/menu', newData)
+            console.log(newData)
+            axiosSecure.patch(`/api/menu?id=${id}`, newData)
             .then(res => {
-                reset();
-                if(res.data.status) {
+                console.log(res)
+                if(res.data.modifiedCount > 0) {
                     reset();
                     Swal.fire({
-                        title: 'Success',
-                        text: `${data?.name} item is Added Successfully`,
+                        title: 'Updated',
+                        text: `${data?.name} item is updated Successfully`,
                         icon:'success',
-                        confirmButtonColor: '#3085d6'
+                        confirmButtonColor: '#3085d6',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else {
+                    Swal.fire({
+                        title: 'Failed',
+                        text: `${data?.name} item is not updated`,
+                        icon:'error',
+                        confirmButtonColor: '#3085d6',
+                        showConfirmButton: false,
+                        timer: 1500
                     })
                 }
             })
@@ -52,22 +69,23 @@ const AddItems = () => {
     }
 
     return (
-        <div>
-            <SectionTitle subtitle={"What's new?"} Title={'ADD AN ITEM'}/>
+        <>
+            <div>
+            <SectionTitle Title={'Update AN ITEM'}/>
             <div className="card bg-gray-200 w-full min-h-[600px] max-w-4xl shrink-0 drop-shadow-md mx-auto">
-                <form onSubmit={handleSubmit(handleAddItems)} className="card-body space-y-4">
+                <form onSubmit={handleSubmit(handleUpdateItem)} className="card-body space-y-4">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Recipe Name</span>
                         </label>
-                        <input type="text" {...register('name', {required: true})} placeholder="Type your recipe" className="input input-bordered" />
+                        <input type="text" defaultValue={name}  {...register('name', {required: true})} placeholder="Type your recipe" className="input input-bordered" />
                     </div>
                     <div className='flex gap-3 justify-between'>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Category</span>
                             </label>
-                            <select {...register('category')} className="select select-bordered " >
+                            <select defaultValue={category} {...register('category')} className="select select-bordered " >
                                 <option disabled selected>Choose Category</option>
                                 <option value="salad">salad</option>
                                 <option value="dessert">dessert</option>
@@ -81,17 +99,17 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Price</span>
                             </label>
-                            <input type="text" {...register('price')} placeholder="Type price" className="input input-bordered" />
+                            <input defaultValue={price} type="text" {...register('price')} placeholder="Type price" className="input input-bordered" />
                         </div>
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Recipe Details</span>
                         </label>
-                        <textarea {...register('recipe')} className="textarea textarea-bordered textarea-md min-h-32" placeholder="Recipe Details"></textarea>
+                        <textarea defaultValue={recipe} {...register('recipe')} className="textarea textarea-bordered textarea-md min-h-32" placeholder="Recipe Details"></textarea>
                     </div>
                     <div className="my-1 -mb-6">
-                    <input type="file" {...register('image')} className=" file-input " />
+                    <input type="file" {...register('image')} className=" file-input w-full file-input-ghost " />
                     </div>
                     <div className="mt-6">
                         <button type='submit' className="btn btn-accent">Add Items</button>
@@ -99,7 +117,9 @@ const AddItems = () => {
                 </form>
             </div>
         </div>
+        </>
+        
     );
 };
 
-export default AddItems;
+export default UpdateItem;
