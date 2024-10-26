@@ -8,12 +8,12 @@ const AdminRoutes = ({children}) => {
 
     const {user, loading} = useAuth();
 
-    const [isAdmin] = useAdmin();
+    const [isAdmin, isAdminLoading] = useAdmin();
     
     const location = useLocation();
 
-    if(loading) 
-        return <span className="loading loading-bars loading-sm"></span>
+    if(loading && isAdminLoading) 
+        return <span className="loading loading-bars loading-md"></span>
     
     if(user && isAdmin){
         return children
