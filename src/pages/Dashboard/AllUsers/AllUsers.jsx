@@ -1,6 +1,5 @@
 import React from 'react';
 import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
-import { AiFillDelete } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -12,8 +11,6 @@ const AllUsers = () => {
 
     const [axiosSecure] = useAxiosSecure();
     const {user} = useAuth();
-    
-    const {deleteUserProfile} = useAuth();
     
     const {data : userData = [], refetch } = useQuery({
         queryKey: ['users', user?.email],
@@ -65,7 +62,6 @@ const AllUsers = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteUserProfile()
                 axiosSecure.delete(`/api/users?id=${id}`)
                     .then(res => {
                         refetch();
