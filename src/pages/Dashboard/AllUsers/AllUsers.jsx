@@ -65,8 +65,8 @@ const AllUsers = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/api/users?id=${id}`)
                     .then(res => {
-                        refetch();
                         if (res.data.deletedCount > 0) {
+                            refetch();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
