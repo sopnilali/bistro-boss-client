@@ -9,7 +9,7 @@ import useAdmin from '../hooks/useAdmin';
 
 const AdminLayout = () => {
 
-    const {user, logoutUser} = useAuth();
+    const {logoutUser} = useAuth();
     const navigate = useNavigate();
 
     const [cart]= useCarts();

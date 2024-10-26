@@ -4,6 +4,7 @@ import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 const Cart = () => {
 
     const [cart, refetch] = useCarts();
