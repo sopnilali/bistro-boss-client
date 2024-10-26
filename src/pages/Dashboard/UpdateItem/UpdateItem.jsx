@@ -40,10 +40,8 @@ const UpdateItem = () => {
                 recipe: data.recipe,
                 image: res.data.data.display_url
             }
-            console.log(newData)
             axiosSecure.patch(`/api/menu?id=${id}`, newData)
             .then(res => {
-                console.log(res)
                 if(res.data.modifiedCount > 0) {
                     reset();
                     Swal.fire({
