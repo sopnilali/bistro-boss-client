@@ -35,7 +35,6 @@ const Register = () => {
       CreateUser(email, password)
         .then(res => {
           reset();
-          console.log(res.user)
           updateUserProfile(full_name, photo)
           .then(() => {
             const userInfo = {
@@ -45,7 +44,6 @@ const Register = () => {
             }
             axiosPublic.post('/api/users', userInfo)
             .then(res => {
-              console.log(res)
               if(res.status == 200){
                 navigate('/')
                 Swal.fire({

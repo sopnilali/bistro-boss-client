@@ -25,7 +25,7 @@ const SocialLogin = () => {
             axiosPublic.post('/api/users', userInfo)
             .then(res => {
                 Swal.fire({
-                title: `${userInfo.name} Logging Successfully`,
+                title: `${userInfo?.name} Logging Successfully`,
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500

@@ -21,18 +21,25 @@ const Login = () => {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        console.log(email, password)
         // clear form inputs
         loginUser(email, password)
         .then(result => {
           Swal.fire( {
-            title: ` ${user?.displayName} Logging Successfully`,
+            title: ` ${result.user?.displayName} Logging Successfully`,
             icon: "success",
             showConfirmButton: false,
             timer: 1500
           })
           e.target.reset();
           navigate(from, {replace:true})
+        })
+        .catch(err => {
+          Swal.fire({
+            title: "Invalid Credentials. Try again",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
 
        
