@@ -43,7 +43,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: 'secret',
-        element: <AdminRoutes><Secret /></AdminRoutes>,
+        element: <PrivateRoutes><Secret /></PrivateRoutes>,
       }
     ]
   },
