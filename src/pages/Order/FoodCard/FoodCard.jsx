@@ -38,7 +38,6 @@ const FoodCard = ({item}) => {
           .then(res => {
             console.log(res)
             if(res.data.insertedId === null){
-              
               Swal.fire({
                 title: 'Item already in cart',
                 text: `${name} is already in your cart`,
