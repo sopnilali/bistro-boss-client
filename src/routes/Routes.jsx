@@ -67,7 +67,7 @@ const Routes = createBrowserRouter([
       {
         path: 'updateItem/:id',
         element: <AdminRoutes><UpdateItem/></AdminRoutes>,
-        loader: ({params}) => fetch(`http://localhost:3000/api/details-menu/${params.id}`)
+        loader: ({params}) => fetch(`https://bistro-boss-server-six-delta.vercel.app/api/details-menu/${params.id}`)
       },
       {
         path: "manageBooking",
