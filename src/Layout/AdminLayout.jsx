@@ -21,7 +21,9 @@ const AdminLayout = () => {
           navigate('/login')
           Swal.fire({
             title: "Logged out",
-            icon: "success"
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500
           });
         })
       }
