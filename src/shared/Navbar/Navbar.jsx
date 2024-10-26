@@ -18,7 +18,7 @@ const Navbar = () => {
     .then(res => {
       navigate('/login')
       Swal.fire({
-        title: "Logged out",
+        title: "Logged out!",
         icon: "success",
         showConfirmButton: false,
         timer: 1500
