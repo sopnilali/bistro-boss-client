@@ -5,6 +5,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 import { Rating } from '@smastrom/react-rating';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddReview = () => {
 
@@ -38,6 +39,9 @@ const AddReview = () => {
 
     return (
         <>
+         <Helmet>
+            <title> Add Your Review | Bistro Boss</title>
+        </Helmet>
             <h2 className="text-4xl">Add Review Route</h2>
 
             <div>

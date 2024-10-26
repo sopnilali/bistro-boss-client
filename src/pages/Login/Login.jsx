@@ -5,6 +5,7 @@ import SocialLogin from './SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
@@ -65,6 +66,9 @@ const Login = () => {
     
     return (
         <>
+        <Helmet>
+            <title> Login | Bistro Boss</title>
+        </Helmet>
             <div className="hero bg-forms min-h-screen ">
   <div className="hero-content w-full min-h-[80%] flex-col lg:flex-row border shadow-lg drop-shadow-lg">
     <div className="text-center lg:text-left max-w-2xl">

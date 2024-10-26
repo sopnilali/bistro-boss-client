@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { FaUtensils } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -69,6 +70,9 @@ const UpdateItem = () => {
 
     return (
         <>
+         <Helmet>
+            <title> {name} update | Bistro Boss</title>
+        </Helmet>
             <div>
             <SectionTitle Title={'Update AN ITEM'}/>
             <div className="card bg-gray-200 w-full min-h-[600px] max-w-4xl shrink-0 drop-shadow-md mx-auto">

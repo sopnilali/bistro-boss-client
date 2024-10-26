@@ -20,10 +20,12 @@ import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AdminRoutes from "./AdminRoutes";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Routes = createBrowserRouter([
   {
     element: <MainLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
@@ -51,6 +53,7 @@ const Routes = createBrowserRouter([
   {
     path: "admin",
     element: <AdminLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: 'dashboard',
@@ -82,6 +85,7 @@ const Routes = createBrowserRouter([
   {
     path: 'user',
     element: <AdminLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "dashboard",

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
@@ -53,6 +54,9 @@ const AddItems = () => {
 
     return (
         <div>
+        <Helmet>
+            <title> Add an item | Bistro Boss</title>
+        </Helmet>
             <SectionTitle subtitle={"What's new?"} Title={'ADD AN ITEM'}/>
             <div className="card bg-gray-200 w-full min-h-[600px] max-w-4xl shrink-0 drop-shadow-md mx-auto">
                 <form onSubmit={handleSubmit(handleAddItems)} className="card-body space-y-4">

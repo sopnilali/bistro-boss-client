@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
 
@@ -79,6 +80,9 @@ const AllUsers = () => {
 
     return (
         <div>
+            <Helmet>
+            <title> All User | Bistro Boss</title>
+        </Helmet>
             <div className='mx-auto'>
                 <SectionTitle subtitle={'How many??'} Title={'MANAGE ALL USERS'} />
             </div>

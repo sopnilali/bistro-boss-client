@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 const Register = () => {
 
   const { CreateUser, updateUserProfile } = useAuth();
@@ -63,6 +64,9 @@ const Register = () => {
 
   return (
     <>
+            <Helmet>
+            <title> Register | Bistro Boss</title>
+        </Helmet>
       <div className="hero bg-forms min-h-screen" >
         <div className="hero-content w-full  min-h-[80%] flex-col lg:flex-row-reverse border shadow-lg drop-shadow-lg ">
           <div className="text-center lg:text-left max-w-2xl">

@@ -5,6 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 const Cart = () => {
 
     const [cart, refetch] = useCarts();
@@ -42,6 +43,9 @@ const Cart = () => {
 
     return (
         <div>
+            <Helmet>
+            <title> All Cart | Bistro Boss</title>
+        </Helmet>
             <div className='mt-4'>
                 <SectionTitle subtitle={'My Cart'} Title={'WANNA ADD MORE?'} />
             </div>

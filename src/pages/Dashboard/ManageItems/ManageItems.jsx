@@ -5,19 +5,14 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ManageItems = () => {
 
-
-  const { data: menu = [], refetch } = useQuery({
-    queryKey: 'menu',
-    queryFn: async () => {
-      const res = await fetch('https://bistro-boss-server-six-delta.vercel.app/api/menu')
-      return await res.json()
-    }
-  })
-
+  const [menu, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
+
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -68,6 +63,9 @@ const ManageItems = () => {
 
   return (
     <div>
+       <Helmet>
+            <title> Manage All Menu | Bistro Boss</title>
+        </Helmet>
       <SectionTitle Title={'Manage All Items'} subtitle={'here more..'} />
       <div className="">
         <div className='flex justify-between mb-2'>
