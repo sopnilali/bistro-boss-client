@@ -10,7 +10,7 @@ const useAxiosSecure = () => {
     const { logoutUser } = useAuth();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://bistro-boss-server-six-delta.vercel.app',
+        baseURL: import.meta.env.VITE_BASE_URL,
     })
 
 
