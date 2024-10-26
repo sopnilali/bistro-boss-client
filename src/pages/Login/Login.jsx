@@ -26,7 +26,7 @@ const Login = () => {
         loginUser(email, password)
         .then(result => {
           Swal.fire( {
-            title: ` ${user.displayName} Logging Successfully`,
+            title: ` ${user?.displayName} Logging Successfully`,
             icon: "success",
             showConfirmButton: false,
             timer: 1500
